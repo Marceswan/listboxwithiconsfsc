@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title={cardTitle}>
+            <c-avonni-dual-listbox
+                    source-label="Available Countries"
+                    selected-label="Selected Countries"
+                    allow-search="true"
+                    options={sourceList}
+                    value={selectedList}
+                    onchange={handleSelectionChange}
+                    required="true"
+            ></c-avonni-dual-listbox>
+    </lightning-card>
+</template>
