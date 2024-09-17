@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>CountryMetadataController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Country__mdt.Abbreviation__c</members>
+        <members>Country__mdt.Country_Name__c</members>
+        <members>Country__mdt.Icon__c</members>
+        <members>Country__mdt.Region__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>Country__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>dualListboxWithIcons</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>61.0</version>
+</Package>

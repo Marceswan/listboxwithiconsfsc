@@ -1,0 +1,17 @@
+.icon-small {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.full-width-highlight.slds-is-selected {
+    background-color: #0070d2;
+    width: 100%;
+    display: block;
+}
+
+.custom-search {
+    margin-bottom: 0;
+}
+
+/* No custom styles affecting the clear icon positioning */

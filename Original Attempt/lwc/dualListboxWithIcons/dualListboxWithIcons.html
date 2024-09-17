@@ -1,0 +1,106 @@
+<!--
+  @description       : 
+  @author            : Marc Swan
+  @group             : 
+  @last modified on  : 09-10-2024
+  @last modified by  : Marc Swan
+  Modifications Log
+  Ver   Date         Author      Modification
+  1.0   09-10-2024   Marc Swan   Initial Version
+-->
+<template>
+    <lightning-card title={cardTitle}>
+        <!-- Dual Listbox -->
+        <div class="slds-form-element slds-m-around_medium" role="group" aria-labelledby="picklist-group-label">
+            <span id="picklist-group-label" class="slds-form-element__label slds-form-element__legend"></span>
+            <div class="slds-form-element__control">
+                <!-- Search Bar (Inline with Native Clear Button) -->
+                <div class="slds-form-element__control">
+                    <div class="slds-input-has-icon slds-input-has-icon_right">
+                        <lightning-input 
+                            type="search" 
+                            placeholder="Search Available Options" 
+                            onchange={handleSearch} 
+                            >
+                        </lightning-input>
+                    </div>
+                </div>
+                <div class="slds-dueling-list">
+                    <!-- Assistive Text for Accessibility -->
+                    <div class="slds-assistive-text" id="drag-live-region" aria-live="assertive"></div>
+                    <div class="slds-assistive-text" id="option-drag-label">
+                        Press space bar when on an item, to move it within the list. Cmd/Ctrl plus left and right arrow keys, to move items between lists.
+                    </div>
+                    
+
+                    <!-- Available Options Column -->
+                    <div class="slds-dueling-list__column slds-dueling-list__column_responsive">
+                        
+                        <span class="slds-form-element__label" id="label-109">Available Countries</span>
+                        
+
+                        <!-- List of Available Options with Search at the Top -->
+                        <div class="slds-dueling-list__options">
+                            
+
+                            <ul aria-describedby="option-drag-label" aria-labelledby="label-109" aria-multiselectable="true" class="slds-listbox slds-listbox_vertical slds-scrollable_y" role="listbox">
+                                <template for:each={filteredAvailableOptions} for:item="option">
+                                    <li key={option.value} role="presentation" class="slds-listbox__item" onclick={handleHighlight} data-id={option.value}>
+                                        <div class="slds-listbox__option slds-listbox__option_plain slds-media slds-media_small slds-media_inline slds-is-relative"
+                                             aria-selected={option.isSelected} draggable="true" role="option" tabindex="0">
+                                            <span class="slds-media__figure">
+                                                <img src={option.icon} alt={option.label} class="icon-small" style="width: 20px; height: 20px;" />
+                                            </span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-truncate" title={option.label}>{option.label}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Controls for Moving Items -->
+                    <div class="slds-dueling-list__column">
+                        <button class="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to Selected Countries" onclick={handleAdd}>
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#right"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Move Selection to Selected Countries</span>
+                        </button>
+                        <button class="slds-button slds-button_icon slds-button_icon-container" title="Move Selection to Available Countries" onclick={handleRemove}>
+                            <svg class="slds-button__icon" aria-hidden="true">
+                                <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#left"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Move Selection to Available Countries</span>
+                        </button>
+                    </div>
+
+                    <!-- Selected Options Column -->
+                    <div class="slds-dueling-list__column slds-dueling-list__column_responsive">
+                        <span class="slds-form-element__label" style="magin-top: 40px" id="label-110">Selected Countries</span>
+                        <div class="slds-dueling-list__options">
+                            <ul aria-describedby="option-drag-label" aria-labelledby="label-110" aria-multiselectable="true" class="slds-listbox slds-listbox_vertical slds-scrollable_y" role="listbox">
+                                <template for:each={selectedOptions} for:item="option">
+                                    <li key={option.value} role="presentation" class="slds-listbox__item" onclick={handleHighlight} data-id={option.value}>
+                                        <div class="slds-listbox__option slds-listbox__option_plain slds-media slds-media_small slds-media_inline slds-is-relative"
+                                             aria-selected={option.isSelected} draggable="true" role="option" tabindex="0">
+                                            <span class="slds-media__figure">
+                                                <img src={option.icon} alt={option.label} class="icon-small" style="width: 20px; height: 20px;" />
+                                            </span>
+                                            <span class="slds-media__body">
+                                                <span class="slds-truncate" title={option.label}>{option.label}</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                </template>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
